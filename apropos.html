@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - Challenge Consulting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap">
+    <style>
+        /* Variables et reset */
+        :root {
+            --primary-color: #0057A8;      /* Bleu principal */
+            --secondary-color: #FFC928;     /* Jaune accent */
+            --dark-blue: #003F7D;           /* Bleu foncé (titres) */
+            --dark-yellow: #E5B221;         /* Jaune foncé (hover boutons) */
+            --light-color: #F5F7FA;         /* Gris clair (fond) */
+            --dark-color: #5A5A5A;          /* Gris texte */
+            --gray-color: #8A8A8A;          /* Gris intermédiaire */
+            --accent-color: #28a745;        /* Vert pour éléments spécifiques */
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #fff;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--dark-blue);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--secondary-color);
+            color: #333;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-yellow);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            color: var(--dark-blue);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a.active {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: -5px;
+            left: 0;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-blue);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 63, 125, 0.85), rgba(0, 63, 125, 0.9)), url('https://images.unsplash.com/photo-1524178239883-269a632bb546?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 160px 0 80px;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Historique */
+        .history {
+            background-color: white;
+        }
+
+        .history-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .history-text {
+            order: 1;
+        }
+
+        .history-image {
+            order: 2;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .history-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .history-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .history-timeline {
+            margin-top: 40px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 10px);
+            background-color: var(--secondary-color);
+        }
+
+        .timeline-item:last-child:after {
+            display: none;
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        /* Mission et Vision */
+        .mission-vision {
+            background-color: var(--light-color);
+        }
+
+        .mv-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .mv-card {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            height: 100%;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .mv-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .mv-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Valeurs */
+        .values {
+            background-color: white;
+        }
+
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 8px;
+            transition: var(--transition);
+            border: 1px solid #eee;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .value-card:hover {
+            border-color: var(--secondary-color);
+            box-shadow: var(--shadow);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0, 87, 168, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        /* Équipe */
+        .team {
+            background-color: var(--light-color);
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-photo {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .member-photo img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .member-name {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .member-position {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        /* Statistiques */
+        .stats {
+            background: linear-gradient(rgba(0, 63, 125, 0.9), rgba(0, 63, 125, 0.95)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+        .stats .section-title {
+            color: white;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Informations générales */
+        .general-info {
+            background-color: white;
+        }
+
+        .info-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .info-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h3 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(to right, var(--primary-color), var(--dark-blue));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -10px;
+            left: 0;
+        }
+
+        .footer-column p, .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            color: #333;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .team-footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .team-footer-text {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .team-footer-btn {
+            margin-top: 20px;
+        }
+
+        .btn-margin-top {
+            margin-top: 20px;
+        }
+
+        .team-footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .team-footer-info {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .info-list {
+            margin-top: 15px;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .info-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .info-card p strong {
+            font-weight: 600;
+        }
+
+        .cta-buttons-wrapper {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        /* Bouton WhatsApp */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .history-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .history-text {
+                order: 2;
+            }
+            
+            .history-image {
+                order: 1;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+            }
+            
+            nav.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            nav ul li {
+                margin: 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+            }
+            
+            .page-header {
+                padding: 140px 0 60px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .mv-container, .values-container, .team-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>CHALLENGE <span>CONSULTING</span></h1>
+            </div>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="Accueil.html">Accueil</a></li>
+                    <li><a href="formations.html">Formations</a></li>
+                    <li><a href="apropos.html" class="active">À propos</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- En-tête de page -->
+    <section class="page-header">
+        <div class="container">
+            <h1>À Propos de Challenge Consulting</h1>
+            <p>Découvrez notre histoire, notre mission, nos valeurs et notre engagement pour votre réussite professionnelle.</p>
+        </div>
+    </section>
+
+    <!-- Historique -->
+    <section class="history">
+        <div class="container">
+            <h2 class="section-title">Notre Histoire</h2>
+            <div class="history-content">
+                <div class="history-text">
+                    <h3>Plus de 15 ans d'excellence dans la formation professionnelle</h3>
+                    <p>Fondé en 2008 par Wilfried G. AZIMBLIGBO, Challenge Consulting est né d'une vision simple mais ambitieuse : rendre la formation professionnelle accessible, pratique et adaptée aux réalités du marché du travail.</p>
+                    <p>Ce qui a commencé comme un petit centre de formation spécialisé en bureautique et maintenance informatique a rapidement évolué pour répondre aux besoins changeants des entreprises et des chercheurs d'emploi. Aujourd'hui, Challenge Consulting est reconnu comme l'un des centres de formation les plus innovants et complets de la région.</p>
+                    <p>Notre croissance a été guidée par une philosophie constante : l'adaptation aux évolutions technologiques et aux besoins du marché, tout en maintenant la qualité et l'accessibilité de nos formations.</p>
+                    
+                    <div class="history-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2008</div>
+                            <p>Création de Challenge Consulting avec 2 formations : Secrétariat Bureautique et Maintenance Informatique de base.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2013</div>
+                            <p>Expansion avec l'ajout des formations en Graphisme Design et Audiovisuel. Ouverture d'un deuxième centre de formation.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2016</div>
+                            <p>Introduction des formations combinées et développement des partenariats avec les entreprises locales pour l'insertion professionnelle.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2020</div>
+                            <p>Adaptation rapide au contexte sanitaire avec le développement de formations hybrides (présentiel et distanciel). Lancement de 5 nouvelles formations digitales.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2023</div>
+                            <p>Challenge Consulting compte désormais 20 formations, 15 formateurs experts et a formé plus de 2 500 apprenants avec un taux de satisfaction de 94%.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="history-image">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Équipe Challenge Consulting">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission et Vision -->
+    <section class="mission-vision">
+        <div class="container">
+            <h2 class="section-title">Notre Mission & Notre Vision</h2>
+            <div class="mv-container">
+                <div class="mv-card">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Notre Mission</h3>
+                    <p>Notre mission est d'accompagner les individus et les entreprises dans leur développement professionnel en proposant des formations de haute qualité, accessibles et adaptées aux réalités du marché du travail.</p>
+                    <p>Nous nous engageons à fournir un environnement d'apprentissage stimulant qui favorise l'acquisition de compétences pratiques, le développement personnel et l'insertion professionnelle durable.</p>
+                    <p>Chaque formation est conçue pour répondre à un besoin spécifique du marché, avec un accent sur la pratique, l'innovation et l'employabilité immédiate.</p>
+                </div>
+                
+                <div class="mv-card">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Notre Vision</h3>
+                    <p>Nous aspirons à devenir le centre de formation de référence en matière de développement des compétences professionnelles en France et à l'international d'ici 2030.</p>
+                    <p>Notre vision est de créer un écosystème d'apprentissage continu où chaque individu peut acquérir, développer et certifier les compétences nécessaires pour exceller dans un monde professionnel en constante évolution.</p>
+                    <p>Nous visons à être reconnus comme des partenaires essentiels pour les entreprises cherchant à développer leurs talents et pour les individus souhaitant booster leur carrière.</p>
+                </div>
+                
+                <div class="mv-card">
+                    <div class="mv-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Notre Engagement</h3>
+                    <p>Nous nous engageons à fournir un accompagnement personnalisé à chaque apprenant, depuis l'orientation jusqu'à l'insertion professionnelle.</p>
+                    <p>Notre engagement qualité se traduit par des formations animées par des experts du secteur, un suivi pédagogique individualisé, et des méthodes d'apprentissage innovantes combinant théorie et pratique.</p>
+                    <p>Nous garantissons une transparence totale sur les contenus de formation, les méthodes pédagogiques et les débouchés professionnels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valeurs -->
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">Nos Valeurs</h2>
+            <div class="values-container">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>Nous visons l'excellence dans tous les aspects de notre activité : qualité des formations, expertise des formateurs, et satisfaction des apprenants.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Accompagnement</h3>
+                    <p>Chaque apprenant est unique. Nous offrons un suivi personnalisé et un accompagnement adapté à chaque parcours professionnel.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>Nous intégrons constamment les nouvelles technologies et méthodes pédagogiques pour garantir des formations à la pointe.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Intégrité</h3>
+                    <p>Transparence, honnêteté et éthique guident toutes nos interactions avec nos apprenants, partenaires et collaborateurs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Équipe -->
+    <section class="team">
+        <div class="container">
+            <h2 class="section-title">Notre Équipe de Direction</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="/image/1001440253.png" alt="Wilfried G. AZIMBLIGBO">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">Wilfried G. AZIMBLIGBO</h4>
+                        <p class="member-position">Fondateur & Directeur Général</p>
+                        <p>15 ans d'expérience dans la formation professionnelle. Ancien consultant en ressources humaines.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="/image/Boss.jpg" alt="Espérant ADOFIN">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">Espérant ADOFIN</h4>
+                        <p class="member-position">Graphiste</p>
+                        <p>Expert en graphisme .</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Amélie Leroy">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">Amélie Leroy</h4>
+                        <p class="member-position">Responsable Innovation</p>
+                        <p>Spécialiste en pédagogie digitale. A développé plus de 50 modules de formation en ligne.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-footer-info">
+                <p>Notre équipe compte également <strong>10 formateurs experts</strong> dans leurs domaines respectifs, chacun sélectionné pour son expertise technique et ses qualités pédagogiques.</p>
+                <a href="contact.html" class="btn btn-primary btn-margin-top">Rencontrer notre équipe</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">Challenge Consulting en chiffres</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-text">Années d'expérience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-text">Apprenants formés</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20</div>
+                    <div class="stat-text">Formations disponibles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-text">Taux de satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Informations générales -->
+    <section class="general-info">
+        <div class="container">
+            <h2 class="section-title">Pourquoi choisir Challenge Consulting ?</h2>
+            <div class="info-container">
+                <div class="info-card">
+                    <h3><i class="fas fa-certificate"></i> Certifications & Accréditations</h3>
+                    <p>Challenge Consulting est un centre de formation professionnelle situé au Bénin.
+                        À l'issue de chaque formation, nous délivrons un certificat reconnu, attestant des compétences acquises par l'apprenant.
+
+                        Nos certificats sont :</p>
+                    <ul class="info-list">
+                        <li>Reconnus par les entreprises et organisations locales</li>
+                        <li>Basés sur des référentiels de compétences alignés sur les standards internationaux</li>
+                        <li>Vérifiables, grâce à un système d'authentification sécurisé</li>
+                        <li>Valorisables pour l'emploi, l'entrepreneuriat ou la montée en compétence</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-building"></i> Nos Locaux</h3>
+                    <p>Notre centre principal est situé Cotonou, Akpakpa-Dégakon, avec des installations modernes et adaptées à l'apprentissage :</p>
+                    <ul class="info-list">
+                        <li>5 salles de formation équipées</li>
+                        <li>Laboratoire informatique de 25 postes</li>
+                        <li>Studio audiovisuel professionnel</li>
+                        <li>Atelier de maintenance technique</li>
+                        <li>Espace coworking pour nos apprenants</li>
+                    </ul>
+                    <p class="info-address"><strong>Adresse :</strong> Cotonou, Akpakpa-Dégakon </p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-handshake"></i> Nos Partenaires</h3>
+                    <p>Nous collaborons avec de nombreuses entreprises et institutions pour garantir la pertinence de nos formations et faciliter l'insertion professionnelle :</p>
+                    <ul class="info-list">
+                        <li>Plus de 50 entreprises partenaires</li>
+                        <li>Partenariats avec Pôle Emploi et les missions locales</li>
+                        <li>Collaboration avec des associations professionnelles</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cta-buttons-wrapper">
+                <a href="formations.html" class="btn">Découvrir nos formations</a>
+                <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Prêt à relever votre prochain défi professionnel ?</h2>
+            <p>Rejoignez les milliers d'apprenants qui ont transformé leur carrière grâce à Challenge Consulting. Nos conseillers sont à votre disposition pour vous orienter vers la formation qui correspond à vos ambitions.</p>
+            <div class="cta-buttons-wrapper">
+                <a href="formations.html" class="btn">Découvrir nos formations</a>
+                <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Challenge Consulting</h3>
+                    <p>Centre de formation professionnelle d'excellence depuis 2008. Nous nous engageons à fournir des formations de qualité pour booster votre carrière.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <a href="Accueil.html">Accueil</a>
+                    <a href="formations.html">Formations</a>
+                    <a href="apropos.html">À propos</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> CHALLENGE CONSULTING Cotonou, Akpakpa-Dégakon</p>
+                    <p><i class="fas fa-phone"></i> +229 01 61 04 83 42</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Horaires d'ouverture</h3>
+                    <p>Lundi - Vendredi : 9h00 - 18h00</p>
+                    <p>Samedi : 9h00 - 13h00</p>
+                    <p>Dimanche : Fermé</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Challenge Consulting. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp -->
+    <a href="https://wa.me/0161048342" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Contactez-nous sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                menuToggle.innerHTML = mainNav.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Fermer le menu en cliquant sur un lien
+            const navLinks = document.querySelectorAll('#mainNav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Animation au défilement
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer les éléments à animer
+            document.querySelectorAll('.mv-card, .value-card, .team-member, .stat-item, .info-card').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Animation des statistiques
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalValue = parseInt(stat.textContent);
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        stat.textContent = finalValue + (stat.textContent.includes('+') ? '+' : '');
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(currentValue) + (stat.textContent.includes('+') ? '+' : '');
+                    }
+                }, 30);
+            });
+        });
+    </script>
+</body>
+</html>

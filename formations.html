@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formations - Challenge Consulting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap">
+    <style>
+        /* Variables et reset */
+        :root {
+            --primary-color: #0057A8;      /* Bleu principal */
+            --secondary-color: #FFC928;     /* Jaune accent */
+            --dark-blue: #003F7D;           /* Bleu foncé (titres) */
+            --dark-yellow: #E5B221;         /* Jaune foncé (hover boutons) */
+            --light-color: #F5F7FA;         /* Gris clair (fond) */
+            --dark-color: #5A5A5A;          /* Gris texte */
+            --gray-color: #8A8A8A;          /* Gris intermédiaire */
+            --accent-color: #007BFF;        /* Accent pour catégories */
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #fff;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--dark-blue);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--secondary-color);
+            color: #333;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-yellow);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            color: var(--dark-blue);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a.active {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: -5px;
+            left: 0;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-blue);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 63, 125, 0.85), rgba(0, 63, 125, 0.9)), url('https://images.unsplash.com/photo-1524178239883-269a632bb546?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 160px 0 80px;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Système de filtrage */
+        .filter-section {
+            background-color: var(--light-color);
+            padding: 40px 0;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-color);
+        }
+
+        .formation-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-color);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .filter-clear {
+            background-color: transparent;
+            color: var(--secondary-color);
+            text-decoration: underline;
+            padding: 10px 15px;
+        }
+
+        .filter-info {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray-color);
+            font-style: italic;
+        }
+
+        /* Grille de formations */
+        .formations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .formation-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .formation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .formation-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .formation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .formation-card:hover .formation-image img {
+            transform: scale(1.1);
+        }
+
+        .formation-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .formation-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+
+        .formation-category.graphisme {
+            background-color: var(--primary-color);
+        }
+
+        .formation-category.dev {
+            background-color: var(--primary-color);
+        }
+        .formation-category.audiovisuel {
+           background-color: var(--primary-color); 
+        }
+        .formation-category.maintenance {
+            background-color: var(--primary-color);
+        }
+        .formation-category.bureautique {
+            background-color: var(--primary-color); /* Rouge */
+        }
+
+        .formation-category.combinee {
+           background-color: var(--primary-color); /* Violet */
+        }
+
+        .formation-details {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .formation-duration {
+            display: flex;
+            align-items: center;
+            color: var(--gray-color);
+        }
+
+        .formation-duration i {
+            margin-right: 5px;
+            color: var(--secondary-color);
+        }
+
+        .formation-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            color: var(--gray-color);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+
+        /* Modal pour les détails de formation */
+        .formation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1100;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 8px;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 1;
+        }
+
+        .modal-header {
+            padding: 30px 30px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-footer {
+            padding: 20px 30px;
+            border-top: 1px solid #eee;
+            text-align: right;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .pagination-btn {
+            padding: 10px 15px;
+            margin: 0 5px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--dark-color);
+        }
+
+        .pagination-btn.active, .pagination-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -10px;
+            left: 0;
+        }
+
+        .footer-column p, .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            color: #333;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Bouton WhatsApp */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .formations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+            }
+            
+            nav.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            nav ul li {
+                margin: 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+            }
+            
+            .page-header {
+                padding: 140px 0 60px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .formations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>CHALLENGE <span>CONSULTING</span></h1>
+            </div>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="Accueil.html">Accueil</a></li>
+                    <li><a href="formations.html" class="active">Formations</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- En-tête de page -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Nos Formations</h1>
+            <p>Découvrez notre catalogue complet de 20 formations professionnelles conçues pour répondre aux besoins du marché actuel.</p>
+        </div>
+    </section>
+
+    <!-- Section de filtrage -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Rechercher une formation par nom, catégorie ou mot-clé...">
+            </div>
+            
+            <div class="formation-filters">
+                <button class="filter-btn active" data-filter="all">Toutes les formations</button>
+                <button class="filter-btn" data-filter="graphisme">Graphisme & Design</button>
+                <button class="filter-btn" data-filter="dev">Développement Web/Mobile</button>
+                <button class="filter-btn" data-filter="audiovisuel">Audiovisuel</button>
+                <button class="filter-btn" data-filter="maintenance">Maintenance</button>
+                <button class="filter-btn" data-filter="bureautique">Bureautique</button>
+                <button class="filter-btn" data-filter="combinee">Formations combinées</button>
+                <button class="filter-btn filter-clear" id="clearFilters">Effacer les filtres</button>
+            </div>
+            
+            <div class="filter-info">
+                <p id="filterResultCount">20 formations disponibles</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grille des formations -->
+    <section class="formations-list">
+        <div class="container">
+            <div class="formations-grid" id="formationsGrid">
+                <!-- Les cartes de formations seront générées dynamiquement par JavaScript -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- La pagination sera générée dynamiquement par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal pour les détails de formation -->
+    <div class="formation-modal" id="formationModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-header">
+                <!-- Le contenu du modal sera généré dynamiquement par JavaScript -->
+            </div>
+            <div class="modal-body">
+                <!-- Le contenu du modal sera généré dynamiquement par JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <!-- Le contenu du modal sera généré dynamiquement par JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Challenge Consulting</h3>
+                    <p>Centre de formation professionnelle d'excellence depuis 2010. Nous nous engageons à fournir des formations de qualité pour booster votre carrière.</p>
+                    <div class="social-links">
+                        <a href="#" title="Suivez-nous sur Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Suivez-nous sur Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Suivez-nous sur LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="Suivez-nous sur Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <a href="Accueil.html">Accueil</a>
+                    <a href="formations.html">Formations</a>
+                    <a href="apropos.html">À propos</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> CHALLENGE CONSULTING Cotonou, Akpakpa-Dégakon</p>
+                    <p><i class="fas fa-phone"></i> +229 01 61 04 83 42</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Horaires d'ouverture</h3>
+                    <p>Lundi - Vendredi : 9h00 - 18h00</p>
+                    <p>Samedi : 9h00 - 13h00</p>
+                    <p>Dimanche : Fermé</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Challenge Consulting. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp -->
+    <a href="https://wa.me/0161048342" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Contactez-nous sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Données des 20 formations
+        const formations = [
+            {
+                id: 1,
+                title: "Graphisme Design",
+                category: "graphisme",
+                description: "Formation complète en design graphique : maîtrise des outils Adobe (Photoshop, Illustrator, InDesign), principes de design, création d'identités visuelles et supports de communication.",
+                detailedDescription: "Cette formation intensive en design graphique vous permettra de maîtriser les principaux logiciels de création (Adobe Creative Cloud) et les fondamentaux du design. Vous apprendrez à créer des logos, chartes graphiques, affiches, brochures et supports digitaux. La formation inclut des projets pratiques et un accompagnement pour la création de votre portfolio professionnel.",
+                duration: "6 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Intermédiaire",
+                places: "15 places",
+                image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 2,
+                title: "Développement Web et Mobile",
+                category: "dev",
+                description: "Formation complète aux technologies de développement web et mobile : HTML, CSS, JavaScript, React, Node.js et développement d'applications hybrides.",
+                detailedDescription: "Devenez développeur web et mobile full-stack avec cette formation complète. Apprenez à créer des sites web responsives, des applications web dynamiques et des applications mobiles hybrides. La formation couvre les technologies front-end (HTML, CSS, JavaScript, React) et back-end (Node.js, Express, bases de données). Un projet final permet de consolider vos compétences.",
+                duration: "8 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Avancé",
+                places: "12 places",
+                image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 3,
+                title: "Métiers de l'audiovisuel",
+                category: "audiovisuel",
+                description: "Formation aux techniques audiovisuelles : prise de vue, montage vidéo, sonorisation, production et réalisation de contenus audiovisuels professionnels.",
+                detailedDescription: "Cette formation vous initie aux métiers de l'audiovisuel avec un programme complet couvrant la production vidéo de A à Z. Vous apprendrez à utiliser du matériel professionnel (caméras, micros, éclairage), les techniques de tournage, le montage avec Adobe Premiere Pro et After Effects, ainsi que les bases de la post-production et de l'étalonnage.",
+                duration: "7 mois",
+                price: "200 000 FCFA",
+                level: "Débutant",
+                places: "10 places",
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 4,
+                title: "Maintenance Informatique",
+                category: "maintenance",
+                description: "Formation technique en maintenance et dépannage informatique : hardware, software, réseaux, sécurité et virtualisation.",
+                detailedDescription: "Devenez technicien en maintenance informatique avec cette formation technique complète. Apprenez à diagnostiquer et réparer les pannes matérielles et logicielles, installer et configurer des systèmes d'exploitation, sécuriser des postes de travail, et gérer des petits réseaux informatiques. La formation inclut des ateliers pratiques sur du matériel réel.",
+                duration: "5 mois",
+                price: "200 000 FCFA",
+                level: "Débutant",
+                places: "18 places",
+                image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 5,
+                title: "Maintenance GSM",
+                category: "maintenance",
+                description: "Formation spécialisée en réparation et maintenance de téléphones mobiles : hardware, software, remplacement de composants et diagnostic.",
+                detailedDescription: "Spécialisez-vous dans la réparation de smartphones avec cette formation technique. Apprenez à diagnostiquer les pannes courantes, remplacer les écrans, batteries et autres composants, utiliser les outils de diagnostic professionnels, et maîtriser les techniques de microsoudure. La formation inclut un kit d'outils de base pour commencer votre activité.",
+                duration: "4 mois",
+                price: "200 000 FCFA",
+                level: "Débutant",
+                places: "15 places",
+                image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w-1300&q=80"
+            },
+            {
+                id: 6,
+                title: "Vidéo Surveillance",
+                category: "maintenance",
+                description: "Formation à l'installation et à la maintenance de systèmes de vidéosurveillance : caméras IP, DVR/NVR, configuration réseau et législation.",
+                detailedDescription: "Devenez installateur de systèmes de vidéosurveillance avec cette formation technique. Apprenez à concevoir un plan de surveillance, choisir et installer les équipements (caméras analogiques et IP, DVR, NVR), configurer les systèmes, intégrer la vidéosurveillance dans un réseau existant, et respecter la législation en vigueur (RGPD, CNIL).",
+                duration: "3 mois",
+                price: "200 000 FCFA",
+                level: "Débutant",
+                places: "12 places",
+                image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 7,
+                title: "Sérigraphie Traditionnel & Moderne",
+                category: "graphisme",
+                description: "Formation complète en sérigraphie : techniques traditionnelles et modernes, impression sur différents supports, gestion d'atelier.",
+                detailedDescription: "Maîtrisez l'art de la sérigraphie avec cette formation pratique. Apprenez les techniques d'insolation d'écrans, de préparation des couleurs, d'impression manuelle et semi-automatique sur textile, papier, bois et autres supports. La formation couvre également la gestion d'un atelier de sérigraphie et les aspects commerciaux de l'activité.",
+                duration: "4 mois",
+                price: "200 000 FCFA",
+                level: "Débutant",
+                places: "8 places",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 8,
+                title: "Opération de Saisie / Informatique de base",
+                category: "bureautique",
+                description: "Formation aux bases de l'informatique et à la saisie rapide : bureautique, traitement de texte, tableurs, navigation internet.",
+                detailedDescription: "Acquérez les compétences de base en informatique nécessaires dans tout environnement professionnel. Cette formation couvre l'utilisation d'un ordinateur (Windows), la maîtrise des outils bureautiques (Word, Excel), la navigation internet, la gestion des emails, et les techniques de saisie rapide. Idéal pour une reconversion ou un retour à l'emploi.",
+                duration: "2 mois",
+                price: "200 000 FCFA",
+                level: "Débutant",
+                places: "20 places",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 9,
+                title: "Secrétariat Bureautique",
+                category: "bureautique",
+                description: "Formation complète en secrétariat : bureautique avancée, gestion administrative, communication professionnelle, organisation.",
+                detailedDescription: "Devenez secrétaire bureautique polyvalent avec cette formation complète. Maîtrisez les outils bureautiques avancés (Word, Excel, PowerPoint, Outlook), apprenez les techniques de classement et d'archivage, la gestion des agendas, l'accueil téléphonique et physique, la rédaction de courriers professionnels, et l'organisation du travail en entreprise.",
+                duration: "5 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Intermédiaire",
+                places: "15 places",
+                image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 10,
+                title: "Secrétariat Comptable",
+                category: "bureautique",
+                description: "Formation spécialisée en secrétariat avec compétences comptables : saisie comptable, paie, logiciels de gestion, fiscalité de base.",
+                detailedDescription: "Cette formation combine les compétences de secrétariat bureautique avec des connaissances comptables essentielles. Apprenez les principes de base de la comptabilité, la saisie des opérations courantes, l'établissement de documents commerciaux (factures, devis), les bases de la paie, et l'utilisation de logiciels de gestion comptable. Parfait pour les postes d'assistant administratif et comptable.",
+                duration: "6 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Intermédiaire",
+                places: "12 places",
+                image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 11,
+                title: "Graphisme Design + Modélisation 3D",
+                category: "combinee",
+                description: "Formation double compétence : design graphique 2D et modélisation 3D avec Blender ou 3ds Max pour le print et le digital.",
+                detailedDescription: "Cette formation unique combine le design graphique traditionnel avec la modélisation 3D. Apprenez à créer des identités visuelles, des supports print et digitaux, tout en maîtrisant les bases de la modélisation 3D, du texturing, du lighting et du rendering. Idéal pour les créatifs souhaitant élargir leurs compétences vers l'illustration 3D, l'animation ou le game design.",
+                duration: "9 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Intermédiaire",
+                places: "10 places",
+                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 12,
+                title: "Graphisme Design + COM. Digitale",
+                category: "combinee",
+                description: "Formation double compétence : design graphique et communication digitale pour créer des campagnes web et réseaux sociaux.",
+                detailedDescription: "Devenez un professionnel complet de la communication visuelle digitale. Cette formation associe le design graphique (création d'identités visuelles, supports print) avec la communication digitale (stratégie de contenu, community management, publicité sur les réseaux sociaux, emailing, analytics). Apprenez à concevoir et déployer des campagnes digitales complètes.",
+                duration: "8 mois",
+                price: "200 000 FCFA",
+                level: "Intermédiaire",
+                places: "12 places",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 13,
+                title: "Graphisme Design + COM. MultiMedia",
+                category: "combinee",
+                description: "Formation complète en design graphique et production multimédia : vidéo, motion design, son et supports interactifs.",
+                detailedDescription: "Cette formation polyvalente vous prépare aux métiers du design multimédia. Combinez le design graphique avec la production vidéo, le motion design (After Effects), le son et la création de supports interactifs. Apprenez à concevoir des dispositifs de communication complets intégrant différents médias pour le web, les événements ou les installations.",
+                duration: "10 mois",
+                price: "200 000 FCFA",
+                level: "Intermédiaire à Avancé",
+                places: "8 places",
+                image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 14,
+                title: "Graphisme Design + Sérigraphie Tradi + Moderne",
+                category: "combinee",
+                description: "Formation complète en design graphique et techniques de sérigraphie traditionnelle et moderne pour l'impression sur divers supports.",
+                detailedDescription: "Devenez un professionnel complet de la création et de l'impression avec cette double compétence. Apprenez à concevoir des visuels (logos, illustrations, typographies) puis à les imprimer vous-même par sérigraphie sur textile, papier, bois, etc. La formation couvre à la fois les techniques traditionnelles (écrans, racles) et modernes (pré-presse numérique, impressions spéciales).",
+                duration: "7 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Intermédiaire",
+                places: "10 places",
+                image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 15,
+                title: "Graphisme Design + Secrétariat Bureautique",
+                category: "combinee",
+                description: "Formation double compétence pour devenir assistant(e) polyvalent(e) maitrisant à la fois le design et les tâches administratives.",
+                detailedDescription: "Cette formation hybride prépare à des postes d'assistant polyvalent dans les agences de communication, studios de design ou services marketing. Combinez des compétences en design graphique (création de supports visuels) avec des compétences bureautiques et administratives avancées (gestion de projet, organisation, comptabilité de base). Idéal pour ceux qui souhaitent être opérationnels dans différents aspects d'une entreprise créative.",
+                duration: "8 mois",
+                price: "200 000 FCFA",
+                level: "Débutant",
+                places: "15 places",
+                image: "https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 16,
+                title: "Graphisme Design + Sérigraphie + Secrétariat",
+                category: "combinee",
+                description: "Triple compétence unique : design graphique, techniques d'impression sérigraphique et gestion administrative d'un atelier.",
+                detailedDescription: "Cette formation complète prépare à la création et à la gestion d'une micro-entreprise ou d'un atelier de sérigraphie. Apprenez à créer des designs, à les imprimer sur différents supports, et à gérer les aspects administratifs et commerciaux de l'activité. Inclut des modules sur la création d'entreprise, la comptabilité de base, la relation client et la communication commerciale.",
+                duration: "10 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Intermédiaire",
+                places: "8 places",
+                image: "https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 17,
+                title: "Graphisme + Développement Web",
+                category: "combinee",
+                description: "Formation double compétence très recherchée : design UI/UX et développement front-end pour créer des sites web complets.",
+                detailedDescription: "Devenez un professionnel complet de la création web avec cette formation qui combine design et développement. Apprenez à concevoir des interfaces utilisateur (UI) et expériences utilisateur (UX) puis à les coder en HTML, CSS et JavaScript. La formation couvre également les frameworks front-end comme React et les principes de design responsive. Parfait pour les postes de web designer/développeur.",
+                duration: "9 mois",
+                price: "200 000 FCFA",
+                level: "Intermédiaire",
+                places: "10 places",
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 18,
+                title: "Audiovisuel + Infographie",
+                category: "combinee",
+                description: "Formation combinant production audiovisuelle et infographie motion design pour créer des contenus vidéo enrichis.",
+                detailedDescription: "Cette formation prépare aux métiers de la production audiovisuelle moderne où vidéo et graphisme motion se combinent. Apprenez les techniques de tournage, de montage vidéo et de post-production, ainsi que la création d'animations graphiques (motion design), d'habillages vidéo et d'effets visuels. Idéal pour travailler dans la production télévisuelle, le corporate, les agences de communication ou en freelance.",
+                duration: "8 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Intermédiaire",
+                places: "10 places",
+                image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 19,
+                title: "Technicien en Maintenance Informatique + Réseaux Informatique + Electronique",
+                category: "combinee",
+                description: "Formation technique complète : maintenance hardware, gestion de réseaux et bases de l'électronique pour une polyvalence maximale.",
+                detailedDescription: "Devenez un technicien informatique polyvalent avec cette formation technique poussée. Combinez la maintenance hardware et software des équipements informatiques, la configuration et la gestion de réseaux (LAN, WLAN), et les bases de l'électronique (lecture de schémas, soudure, dépannage de cartes électroniques). Cette triple compétence est très recherchée dans les services techniques, les sociétés de service et les centres de réparation.",
+                duration: "10 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Intermédiaire",
+                places: "12 places",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            },
+            {
+                id: 20,
+                title: "Technicien en Maintenance Informatique + Réseaux Informatique + GSM Cellulaire",
+                category: "combinee",
+                description: "Formation technique triple compétence : maintenance informatique, réseaux et téléphonie mobile pour couvrir tous les besoins techniques.",
+                detailedDescription: "Cette formation prépare à des postes de technicien polyvalent capable d'intervenir sur tous les équipements technologiques d'une entreprise. Apprenez la maintenance des ordinateurs et périphériques, la configuration des réseaux informatiques (câblage, switchs, routeurs), et la réparation des smartphones et tablettes. Cette combinaison de compétences est idéale pour les services techniques d'entreprise, les revendeurs multi-technologies ou l'activité indépendante.",
+                duration: "9 mois",
+                price: "200 000 FCFA",
+                level: "Débutant à Intermédiaire",
+                places: "12 places",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1300&q=80"
+            }
+        ];
+
+        
+        // Variables globales
+        let currentFilter = 'all';
+        let currentSearch = '';
+        let currentPage = 1;
+        const formationsPerPage = 6;
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu mobile
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                menuToggle.innerHTML = mainNav.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Fermer le menu en cliquant sur un lien
+            const navLinks = document.querySelectorAll('#mainNav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Initialisation des filtres
+            initFilters();
+            
+            // Initialisation de la recherche
+            initSearch();
+            
+            // Affichage initial des formations
+            displayFormations();
+            
+            // Initialisation du modal
+            initModal();
+            
+            // Effacer les filtres
+            document.getElementById('clearFilters').addEventListener('click', function() {
+                currentFilter = 'all';
+                currentSearch = '';
+                document.getElementById('searchInput').value = '';
+                
+                // Mettre à jour les boutons de filtre
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    if (btn.getAttribute('data-filter') === 'all') {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // Réinitialiser la pagination
+                currentPage = 1;
+                
+                // Afficher les formations
+                displayFormations();
+            });
+        });
+        
+        // Initialisation des filtres
+        function initFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn:not(.filter-clear)');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Mettre à jour les boutons actifs
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Mettre à jour le filtre courant
+                    currentFilter = this.getAttribute('data-filter');
+                    
+                    // Réinitialiser la pagination
+                    currentPage = 1;
+                    
+                    // Afficher les formations filtrées
+                    displayFormations();
+                });
+            });
+        }
+        
+        // Initialisation de la recherche
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            let searchTimeout;
+            
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                
+                searchTimeout = setTimeout(() => {
+                    currentSearch = this.value.toLowerCase();
+                    currentPage = 1;
+                    displayFormations();
+                }, 300);
+            });
+        }
+        
+        // Initialisation du modal
+        function initModal() {
+            const modal = document.getElementById('formationModal');
+            const closeBtn = document.getElementById('modalClose');
+            
+            // Fermer le modal en cliquant sur la croix
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Fermer le modal en cliquant en dehors du contenu
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Fermer le modal avec la touche Échap
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Afficher les formations
+        function displayFormations() {
+            // Filtrer les formations
+            let filteredFormations = formations.filter(formation => {
+                // Filtre par catégorie
+                const categoryMatch = currentFilter === 'all' || formation.category === currentFilter;
+                
+                // Filtre par recherche
+                const searchMatch = !currentSearch || 
+                    formation.title.toLowerCase().includes(currentSearch) ||
+                    formation.description.toLowerCase().includes(currentSearch) ||
+                    formation.category.toLowerCase().includes(currentSearch);
+                
+                return categoryMatch && searchMatch;
+            });
+            
+            // Mettre à jour le compteur de résultats
+            updateResultCount(filteredFormations.length);
+            
+            // Calculer la pagination
+            const totalPages = Math.ceil(filteredFormations.length / formationsPerPage);
+            const startIndex = (currentPage - 1) * formationsPerPage;
+            const endIndex = startIndex + formationsPerPage;
+            const paginatedFormations = filteredFormations.slice(startIndex, endIndex);
+            
+            // Afficher les formations
+            const formationsGrid = document.getElementById('formationsGrid');
+            formationsGrid.innerHTML = '';
+            
+            if (paginatedFormations.length === 0) {
+                formationsGrid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h3>Aucune formation ne correspond à vos critères</h3>
+                        <p>Essayez de modifier vos filtres ou votre recherche.</p>
+                    </div>
+                `;
+            } else {
+                paginatedFormations.forEach(formation => {
+                    const formationCard = createFormationCard(formation);
+                    formationsGrid.appendChild(formationCard);
+                });
+            }
+            
+            // Afficher la pagination
+            displayPagination(filteredFormations.length, totalPages);
+        }
+        
+        // Créer une carte de formation
+        function createFormationCard(formation) {
+            const formationCard = document.createElement('div');
+            formationCard.classList.add('formation-card');
+            formationCard.setAttribute('data-category', formation.category);
+            
+            // Déterminer le libellé de la catégorie
+            let categoryLabel = '';
+            switch(formation.category) {
+                case 'graphisme': categoryLabel = 'Graphisme & Design'; break;
+                case 'dev': categoryLabel = 'Développement'; break;
+                case 'audiovisuel': categoryLabel = 'Audiovisuel'; break;
+                case 'maintenance': categoryLabel = 'Maintenance'; break;
+                case 'bureautique': categoryLabel = 'Bureautique'; break;
+                case 'combinee': categoryLabel = 'Formation combinée'; break;
+            }
+            
+            formationCard.innerHTML = `
+                <div class="formation-image">
+                    <img src="${formation.image}" alt="${formation.title}">
+                </div>
+                <div class="formation-info">
+                    <span class="formation-category ${formation.category}">${categoryLabel}</span>
+                    <h3>${formation.title}</h3>
+                    <p>${formation.description}</p>
+                    <div class="formation-details">
+                        <div class="formation-duration">
+                            <i class="far fa-clock"></i> ${formation.duration}
+                        </div>
+                        <div class="formation-price">${formation.price}</div>
+                    </div>
+                    <div style="margin-top: 20px; display: flex; gap: 10px;">
+                        <button class="btn btn-details" data-id="${formation.id}" style="flex: 1;">Détails</button>
+                        <a href="contact.html?formation=${formation.id}" class="btn btn-primary" style="flex: 1; text-align: center;">S'inscrire</a>
+                    </div>
+                </div>
+            `;
+            
+            // Ajouter l'événement pour afficher les détails
+            const detailsBtn = formationCard.querySelector('.btn-details');
+            detailsBtn.addEventListener('click', function() {
+                showFormationDetails(formation.id);
+            });
+            
+            return formationCard;
+        }
+        
+        // Afficher les détails d'une formation
+        function showFormationDetails(formationId) {
+            const formation = formations.find(f => f.id === formationId);
+            if (!formation) return;
+            
+            const modal = document.getElementById('formationModal');
+            const modalHeader = modal.querySelector('.modal-header');
+            const modalBody = modal.querySelector('.modal-body');
+            const modalFooter = modal.querySelector('.modal-footer');
+            
+            // Déterminer le libellé de la catégorie
+            let categoryLabel = '';
+            switch(formation.category) {
+                case 'graphisme': categoryLabel = 'Graphisme & Design'; break;
+                case 'dev': categoryLabel = 'Développement Web/Mobile'; break;
+                case 'audiovisuel': categoryLabel = 'Audiovisuel'; break;
+                case 'maintenance': categoryLabel = 'Maintenance'; break;
+                case 'bureautique': categoryLabel = 'Bureautique'; break;
+                case 'combinee': categoryLabel = 'Formation combinée'; break;
+            }
+            
+            // Mettre à jour le header du modal
+            modalHeader.innerHTML = `
+                <h2>${formation.title}</h2>
+                <span class="formation-category ${formation.category}" style="display: inline-block; margin-top: 5px;">${categoryLabel}</span>
+            `;
+            
+            // Mettre à jour le body du modal
+            modalBody.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                    <div>
+                        <h4><i class="fas fa-info-circle" style="color: var(--secondary-color); margin-right: 10px;"></i> Description détaillée</h4>
+                        <p>${formation.detailedDescription}</p>
+                    </div>
+                    <div>
+                        <h4><i class="fas fa-graduation-cap" style="color: var(--secondary-color); margin-right: 10px;"></i> Informations pratiques</h4>
+                        <div style="background-color: var(--light-color); padding: 20px; border-radius: 8px;">
+                            <p><strong>Durée :</strong> ${formation.duration}</p>
+                            <p><strong>Niveau :</strong> ${formation.level}</p>
+                            <p><strong>Places disponibles :</strong> ${formation.places}</p>
+                            <p><strong>Prix :</strong> <span style="color: var(--primary-color); font-weight: bold;">${formation.price}</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4><i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px;"></i> Ce que vous apprendrez</h4>
+                    <ul style="columns: 2; list-style-type: none; padding-left: 0;">
+                        <li><i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i> Compétences techniques spécialisées</li>
+                        <li><i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i> Méthodologies professionnelles</li>
+                        <li><i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i> Utilisation d'outils modernes</li>
+                        <li><i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i> Projets pratiques réels</li>
+                        <li><i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i> Techniques de recherche d'emploi</li>
+                        <li><i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i> Création de portfolio professionnel</li>
+                    </ul>
+                </div>
+            `;
+            
+            // Mettre à jour le footer du modal
+            modalFooter.innerHTML = `
+                <button class="btn" id="closeModal">Fermer</button>
+                <a href="contact.html?formation=${formation.id}" class="btn btn-primary">Demander plus d'informations</a>
+                <a href="contact.html?formation=${formation.id}&action=inscription" class="btn" style="background-color: #28a745; color: white;">S'inscrire maintenant</a>
+            `;
+            
+            // Ajouter l'événement pour fermer le modal
+            document.getElementById('closeModal').addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Afficher le modal
+            modal.style.display = 'block';
+        }
+        
+        // Afficher la pagination
+        function displayPagination(totalItems, totalPages) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            
+            if (totalPages <= 1) return;
+            
+            // Bouton précédent
+            const prevBtn = document.createElement('button');
+            prevBtn.classList.add('pagination-btn');
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayFormations();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+            pagination.appendChild(prevBtn);
+            
+            // Numéros de page
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.classList.add('pagination-btn');
+                if (i === currentPage) pageBtn.classList.add('active');
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', function() {
+                    currentPage = i;
+                    displayFormations();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+                pagination.appendChild(pageBtn);
+            }
+            
+            // Bouton suivant
+            const nextBtn = document.createElement('button');
+            nextBtn.classList.add('pagination-btn');
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayFormations();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+            pagination.appendChild(nextBtn);
+        }
+        
+        // Mettre à jour le compteur de résultats
+        function updateResultCount(count) {
+            const resultElement = document.getElementById('filterResultCount');
+            if (count === 0) {
+                resultElement.textContent = "Aucune formation ne correspond à vos critères";
+            } else if (count === 1) {
+                resultElement.textContent = "1 formation disponible";
+            } else {
+                resultElement.textContent = `${count} formations disponibles`;
+            }
+        }
+    </script>
+</body>
+</html>
